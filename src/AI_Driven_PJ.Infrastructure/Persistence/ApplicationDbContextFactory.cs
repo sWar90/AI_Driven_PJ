@@ -8,7 +8,7 @@ public sealed class ApplicationDbContextFactory : IDesignTimeDbContextFactory<Ap
     public ApplicationDbContext CreateDbContext(string[] args)
     {
         var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection")
-            ?? "Data Source=localhost, 1433;Initial Catalog=AI_Driven_PJ;Persist Security Info=True;TrustServerCertificate=true;User ID=sa;Password=Password@123;";
+            ?? "Data Source=localhost,1433;Initial Catalog=AI_Driven_PJ;Persist Security Info=True;TrustServerCertificate=true;User ID=sa;Password=<your-password>;";
 
         var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
         optionsBuilder.UseSqlServer(connectionString);
