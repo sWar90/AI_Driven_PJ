@@ -1,0 +1,6 @@
+@AI_Driven_PJ.Api_HostAddress = http://localhost:5042
+
+GET {{AI_Driven_PJ.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
