@@ -3,11 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AI_Driven_PJ.Api.Controllers;
 
+[Route("[controller]")]
 [ApiController]
-[Route("api/health")]
 public sealed class HealthController : ControllerBase
 {
     [HttpGet]
+    [EndpointSummary("Get Data")]
     public IActionResult Get()
     {
         return Ok(ApiResponse<object>.Ok(new
