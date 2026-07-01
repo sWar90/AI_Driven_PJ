@@ -4,11 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AI_Driven_PJ.Api.Controllers;
 
+[Route("[controller]")]
 [ApiController]
-[Route("api/banks")]
 public sealed class BanksController(BankService bankService) : ControllerBase
 {
     [HttpGet]
+    [EndpointSummary("Get All")]
+    [EndpointDescription("Get All Banks")]
     public async Task<IActionResult> GetList(
         [FromQuery] QueryParams queryParams,
         CancellationToken cancellationToken)
@@ -18,6 +20,8 @@ public sealed class BanksController(BankService bankService) : ControllerBase
     }
 
     [HttpGet("{id:int}")]
+    [EndpointSummary("Get By Id")]
+    [EndpointDescription("Get By Id")]
     public async Task<IActionResult> GetById(int id, CancellationToken cancellationToken)
     {
         var result = await bankService.GetByIdAsync(id, cancellationToken);
@@ -27,6 +31,8 @@ public sealed class BanksController(BankService bankService) : ControllerBase
     }
 
     [HttpPost]
+    [EndpointSummary("Create")]
+    [EndpointDescription("Create Bank")]
     public async Task<IActionResult> Create(
         BankRequest request,
         CancellationToken cancellationToken)
@@ -38,6 +44,8 @@ public sealed class BanksController(BankService bankService) : ControllerBase
     }
 
     [HttpPut("{id:int}")]
+    [EndpointSummary("Update")]
+    [EndpointDescription("Update By Id")]
     public async Task<IActionResult> Update(
         int id,
         BankRequest request,
@@ -50,6 +58,8 @@ public sealed class BanksController(BankService bankService) : ControllerBase
     }
 
     [HttpDelete("{id:int}")]
+    [EndpointSummary("Delete")]
+    [EndpointDescription("Delete By Id")]
     public async Task<IActionResult> Delete(int id, CancellationToken cancellationToken)
     {
         var result = await bankService.DeleteAsync(id, cancellationToken);
