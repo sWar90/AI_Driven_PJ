@@ -12,7 +12,7 @@ public sealed class CompaniesController(CompanyService companyService) : Control
 {
     [HttpGet]
     [EndpointSummary("Get All")]
-    [EndpointDescription("Get All Campany")]
+    [EndpointDescription("Get paginated companies list")]
     public async Task<IActionResult> GetList(
         [FromQuery] QueryParams queryParams,
         CancellationToken cancellationToken)
@@ -23,7 +23,7 @@ public sealed class CompaniesController(CompanyService companyService) : Control
 
     [HttpGet("{id:int}")]
     [EndpointSummary("Get By Id")]
-    [EndpointDescription("Get All Id")]
+    [EndpointDescription("Get All Company Id")]
     public async Task<IActionResult> GetById(int id, CancellationToken cancellationToken)
     {
         var result = await companyService.GetByIdAsync(id, cancellationToken);
@@ -47,7 +47,7 @@ public sealed class CompaniesController(CompanyService companyService) : Control
 
     [HttpPut("{id:int}")]
     [EndpointSummary("Update")]
-    [EndpointDescription("Update By Id")]
+    [EndpointDescription("Update By Company Id")]
     public async Task<IActionResult> Update(
         int id,
         CompanyRequest request,
@@ -61,7 +61,7 @@ public sealed class CompaniesController(CompanyService companyService) : Control
 
     [HttpDelete("{id:int}")]
     [EndpointSummary("Delete")]
-    [EndpointDescription("Delete By Id")]
+    [EndpointDescription("Delete By Company Id")]
     public async Task<IActionResult> Delete(int id, CancellationToken cancellationToken)
     {
         var result = await companyService.DeleteAsync(id, cancellationToken);
