@@ -1,0 +1,4 @@
+interface:
+  display_name: "ASP.NET Hybrid Clean Architecture"
+  short_description: "Build hybrid Clean Architecture APIs"
+  default_prompt: "Use $aspnet-clean-architecture-skill to build an ASP.NET Core backend API with Application Services for simple CRUD and CQRS for complex features."

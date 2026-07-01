@@ -1,0 +1,4 @@
+interface:
+  display_name: "API Encryption Middleware"
+  short_description: "Add API request decryption support."
+  default_prompt: "Add API request encryption/decryption support using the RixsFinTrack Clean Architecture boundaries."

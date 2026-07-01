@@ -1,0 +1,4 @@
+interface:
+  display_name: "EF Core Audit DDD"
+  short_description: "Add EF Core audit and soft delete foundations"
+  default_prompt: "Use $efcore-audit-ddd-skill to add DDD base entities, audit interceptors, and soft delete query filters."

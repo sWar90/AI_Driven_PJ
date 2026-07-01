@@ -1,0 +1,4 @@
+interface:
+  display_name: "Report with Raw SQL"
+  short_description: "Build paged raw SQL report APIs"
+  default_prompt: "Use $report-with-raw-sql to build a paged ASP.NET Core report API backed by parameterized raw SQL."

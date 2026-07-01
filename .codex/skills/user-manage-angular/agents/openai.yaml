@@ -1,0 +1,4 @@
+interface:
+  display_name: "User Manage Angular"
+  short_description: "Build Angular UserManage-style CRUD features for RixsFinTrack."
+  default_prompt: "Create or update an Angular user-management feature using the RixsFinTrack UserManage patterns."

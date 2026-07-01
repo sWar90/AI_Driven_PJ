@@ -1,0 +1,4 @@
+interface:
+  display_name: "ASP.NET CORS Configuration"
+  short_description: "Configure secure environment-based CORS for ASP.NET Core APIs."
+  default_prompt: "Configure secure environment-based CORS for this ASP.NET Core API using DefaultCorsPolicy and Cors:AllowedOrigins."

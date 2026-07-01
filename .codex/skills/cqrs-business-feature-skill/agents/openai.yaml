@@ -1,0 +1,4 @@
+interface:
+  display_name: "CQRS Business Feature"
+  short_description: "Build complex business CQRS features"
+  default_prompt: "Use $cqrs-business-feature-skill to add a complex business feature with commands, queries, handlers, validators, DTOs, and thin ISender controllers."

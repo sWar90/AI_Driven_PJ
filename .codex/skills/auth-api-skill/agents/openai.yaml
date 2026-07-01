@@ -1,0 +1,4 @@
+interface:
+  display_name: "Auth API Skill"
+  short_description: "Build Clean Architecture auth APIs"
+  default_prompt: "Use $auth-api-skill to add JWT login, refresh, revoke, and auth setup for this ASP.NET Core API."

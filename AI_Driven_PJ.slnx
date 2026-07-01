@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/AI_Driven_PJ.Api/AI_Driven_PJ.Api.csproj" />
+    <Project Path="src/AI_Driven_PJ.Application/AI_Driven_PJ.Application.csproj" />
+    <Project Path="src/AI_Driven_PJ.Domain/AI_Driven_PJ.Domain.csproj" />
+    <Project Path="src/AI_Driven_PJ.Infrastructure/AI_Driven_PJ.Infrastructure.csproj" />
+  </Folder>
+</Solution>

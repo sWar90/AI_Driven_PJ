@@ -1,0 +1,4 @@
+interface:
+  display_name: "Master Data Service"
+  short_description: "Build simple master data CRUD services"
+  default_prompt: "Use $master-data-service-skill to add simple master data CRUD with Application services instead of CQRS."

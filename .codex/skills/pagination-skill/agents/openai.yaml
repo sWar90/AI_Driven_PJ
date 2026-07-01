@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pagination"
+  short_description: "Use shared list pagination helpers"
+  default_prompt: "Use $pagination-skill to add QueryParams, PagedResult, and ToPagedResultAsync for list APIs."

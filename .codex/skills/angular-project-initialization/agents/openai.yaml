@@ -1,0 +1,4 @@
+interface:
+  display_name: "Angular Project Initialization"
+  short_description: "Set up Angular apps and packages"
+  default_prompt: "Use $angular-project-initialization to create an Angular app with the repository package and tooling conventions."

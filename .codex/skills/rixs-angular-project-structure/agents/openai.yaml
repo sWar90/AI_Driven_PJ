@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rixs Angular Structure"
+  short_description: "Build Angular features in RixsFinTrack style"
+  default_prompt: "Use $rixs-angular-project-structure to build an Angular feature following the RixsFinTrack project structure."

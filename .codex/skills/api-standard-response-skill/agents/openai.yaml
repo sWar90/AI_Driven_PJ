@@ -1,0 +1,4 @@
+interface:
+  display_name: "API Standard Response"
+  short_description: "Standardize ASP.NET API responses"
+  default_prompt: "Use $api-standard-response-skill to add ApiResponse wrappers and make all endpoints return the standard success/code/message/data shape."
