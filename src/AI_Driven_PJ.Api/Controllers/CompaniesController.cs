@@ -1,14 +1,18 @@
 using AI_Driven_PJ.Application.Common.Models;
 using AI_Driven_PJ.Application.Masters.Companies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AI_Driven_PJ.Api.Controllers;
 
+//[Authorize]
+[Route("[controller]")]
 [ApiController]
-[Route("api/companies")]
 public sealed class CompaniesController(CompanyService companyService) : ControllerBase
 {
     [HttpGet]
+    [EndpointSummary("Get All")]
+    [EndpointDescription("Get All Campany")]
     public async Task<IActionResult> GetList(
         [FromQuery] QueryParams queryParams,
         CancellationToken cancellationToken)
@@ -18,6 +22,8 @@ public sealed class CompaniesController(CompanyService companyService) : Control
     }
 
     [HttpGet("{id:int}")]
+    [EndpointSummary("Get By Id")]
+    [EndpointDescription("Get All Id")]
     public async Task<IActionResult> GetById(int id, CancellationToken cancellationToken)
     {
         var result = await companyService.GetByIdAsync(id, cancellationToken);
@@ -27,6 +33,8 @@ public sealed class CompaniesController(CompanyService companyService) : Control
     }
 
     [HttpPost]
+    [EndpointSummary("Create")]
+    [EndpointDescription("Create Company")]
     public async Task<IActionResult> Create(
         CompanyRequest request,
         CancellationToken cancellationToken)
@@ -38,6 +46,8 @@ public sealed class CompaniesController(CompanyService companyService) : Control
     }
 
     [HttpPut("{id:int}")]
+    [EndpointSummary("Update")]
+    [EndpointDescription("Update By Id")]
     public async Task<IActionResult> Update(
         int id,
         CompanyRequest request,
@@ -50,6 +60,8 @@ public sealed class CompaniesController(CompanyService companyService) : Control
     }
 
     [HttpDelete("{id:int}")]
+    [EndpointSummary("Delete")]
+    [EndpointDescription("Delete By Id")]
     public async Task<IActionResult> Delete(int id, CancellationToken cancellationToken)
     {
         var result = await companyService.DeleteAsync(id, cancellationToken);
