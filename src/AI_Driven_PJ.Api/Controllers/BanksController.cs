@@ -10,7 +10,7 @@ public sealed class BanksController(BankService bankService) : ControllerBase
 {
     [HttpGet]
     [EndpointSummary("Get All")]
-    [EndpointDescription("Get All Banks")]
+    [EndpointDescription("Get paginated banks list.")]
     public async Task<IActionResult> GetList(
         [FromQuery] QueryParams queryParams,
         CancellationToken cancellationToken)
@@ -21,7 +21,7 @@ public sealed class BanksController(BankService bankService) : ControllerBase
 
     [HttpGet("{id:int}")]
     [EndpointSummary("Get By Id")]
-    [EndpointDescription("Get By Id")]
+    [EndpointDescription("Get By Bank Id")]
     public async Task<IActionResult> GetById(int id, CancellationToken cancellationToken)
     {
         var result = await bankService.GetByIdAsync(id, cancellationToken);
