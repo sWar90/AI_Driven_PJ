@@ -3,6 +3,7 @@ using AI_Driven_PJ.Application.Common.Options;
 using AI_Driven_PJ.Infrastructure.Persistence;
 using AI_Driven_PJ.Infrastructure.Persistence.Interceptors;
 using AI_Driven_PJ.Infrastructure.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
@@ -28,6 +29,14 @@ public static class DependencyInjection
 
         services.AddSingleton<IEncryptionService, EncryptionService>();
         services.AddSingleton<ICryptography, Cryptography>();
+        services.AddSingleton<IRandomizer, Randomizer>();
+        services.AddSingleton<IIdGenerationService, IdGenerationService>();
+        services.AddSingleton<IDateTimeService, DateTimeService>();
+        services.AddHttpContextAccessor();
+        services.AddScoped<ICurrentUserService, CurrentUserService>();
+        services.AddScoped<IFileService, FileService>();
+        services.AddSingleton<IAuthTokenCache, InMemoryAuthTokenCache>();
+        services.AddScoped<ITokenBuilder, TokenBuilder>();
         services.AddScoped<ISaveChangesInterceptor, AuditableEntitySaveChangesInterceptor>();
 
         services.AddDbContext<ApplicationDbContext>((serviceProvider, options) =>
@@ -36,6 +45,18 @@ public static class DependencyInjection
             options.UseSqlServer(connectionString);
             options.AddInterceptors(serviceProvider.GetServices<ISaveChangesInterceptor>());
         });
+
+        services.AddIdentityCore<IdentityUser>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 6;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireNonAlphanumeric = false;
+            })
+            .AddRoles<IdentityRole>()
+            .AddEntityFrameworkStores<ApplicationDbContext>();
 
         services.AddDbContext<AI_Driven_PJDbContext>((serviceProvider, options) =>
         {
