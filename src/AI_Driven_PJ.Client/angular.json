@@ -1,0 +1,121 @@
+{
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "cli": {
+        "packageManager": "pnpm"
+    },
+    "newProjectRoot": "projects",
+    "projects": {
+        "AI_Driven_PJ.Client": {
+            "projectType": "application",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "style": "scss"
+                }
+            },
+            "root": "",
+            "sourceRoot": "src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "@angular/build:application",
+                    "options": {
+                        "browser": "src/main.ts",
+                        "tsConfig": "tsconfig.app.json",
+                        "inlineStyleLanguage": "scss",
+                        "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "public"
+                            }
+                        ],
+                        "styles": ["src/assets/tailwind.css", "src/assets/styles.scss"]
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": {
+                                "scripts": true,
+                                "styles": true,
+                                "fonts": false
+                            },
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2MB",
+                                    "maximumError": "3MB"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "10kB",
+                                    "maximumError": "12kB"
+                                }
+                            ],
+                            "outputHashing": "all"
+                        },
+                        "staging": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.staging.ts"
+                                }
+                            ],
+                            "optimization": {
+                                "scripts": true,
+                                "styles": true,
+                                "fonts": false
+                            },
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2MB",
+                                    "maximumError": "3MB"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "10kB",
+                                    "maximumError": "12kB"
+                                }
+                            ],
+                            "outputHashing": "all"
+                        },
+                        "development": {
+                            "optimization": false,
+                            "extractLicenses": false,
+                            "sourceMap": true
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "serve": {
+                    "builder": "@angular/build:dev-server",
+                    "configurations": {
+                        "production": {
+                            "buildTarget": "AI_Driven_PJ.Client:build:production"
+                        },
+                        "staging": {
+                            "buildTarget": "AI_Driven_PJ.Client:build:staging"
+                        },
+                        "development": {
+                            "buildTarget": "AI_Driven_PJ.Client:build:development"
+                        }
+                    },
+                    "defaultConfiguration": "development"
+                },
+                "test": {
+                    "builder": "@angular/build:unit-test",
+                    "options": {
+                        "buildTarget": "AI_Driven_PJ.Client:build:development",
+                        "tsConfig": "tsconfig.spec.json",
+                        "runner": "vitest"
+                    }
+                }
+            }
+        }
+    }
+}
