@@ -1,3 +1,4 @@
+using AI_Driven_PJ.Application.Auth;
 using AI_Driven_PJ.Application.Masters.Banks;
 using AI_Driven_PJ.Application.Masters.Companies;
 using Microsoft.Extensions.Configuration;
@@ -18,6 +19,7 @@ public static class DependencyInjection
     {
         services.AddScoped<BankService>();
         services.AddScoped<CompanyService>();
+        services.AddScoped<AuthService>();
 
         return services;
     }
