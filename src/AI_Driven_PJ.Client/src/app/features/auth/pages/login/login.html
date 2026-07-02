@@ -1,0 +1,44 @@
+<main class="login-page">
+    <div class="login-actions" aria-label="Page actions">
+        <button class="icon-button icon-button--muted" type="button" [attr.aria-label]="isDarkTheme() ? 'Switch to light theme' : 'Switch to dark theme'" (click)="toggleTheme()">
+            <i class="pi" [class.pi-sun]="isDarkTheme()" [class.pi-moon]="!isDarkTheme()"></i>
+        </button>
+        <button class="icon-button icon-button--primary" type="button" aria-label="Switch language" (click)="switchLanguage()">
+            <i class="pi pi-globe"></i>
+        </button>
+    </div>
+
+    <section class="login-card" aria-labelledby="login-title">
+        <div class="login-mark" aria-hidden="true">
+            <span>S</span>
+        </div>
+
+        <header class="login-header">
+            <h1 id="login-title">{{ t('AUTH.LOGIN.WELCOME') }}</h1>
+            <p>{{ t('AUTH.LOGIN.SUBTITLE') }}</p>
+        </header>
+
+        <form class="login-form" (submit)="submit($event)">
+            <label for="email">{{ t('AUTH.LOGIN.EMAIL') }}</label>
+            <input id="email" class="login-input" type="email" [placeholder]="t('AUTH.LOGIN.EMAIL_PLACEHOLDER')" autocomplete="email" />
+
+            <label for="password">{{ t('AUTH.LOGIN.PASSWORD') }}</label>
+            <div class="password-field">
+                <input id="password" class="login-input" [type]="showPassword() ? 'text' : 'password'" [placeholder]="t('AUTH.LOGIN.PASSWORD_PLACEHOLDER')" autocomplete="current-password" />
+                <button type="button" class="password-toggle" aria-label="Toggle password visibility" (click)="togglePassword()">
+                    <i class="pi" [class.pi-eye]="!showPassword()" [class.pi-eye-slash]="showPassword()"></i>
+                </button>
+            </div>
+
+            <div class="login-options">
+                <div class="remember">
+                    <input id="rememberMe" class="login-checkbox" type="checkbox" />
+                    <label for="rememberMe">{{ t('AUTH.LOGIN.REMEMBER_ME') }}</label>
+                </div>
+                <a href="/auth/login">{{ t('AUTH.LOGIN.FORGOT_PASSWORD') }}</a>
+            </div>
+
+            <button type="submit" class="login-submit">{{ t('AUTH.LOGIN.SIGN_IN') }}</button>
+        </form>
+    </section>
+</main>
