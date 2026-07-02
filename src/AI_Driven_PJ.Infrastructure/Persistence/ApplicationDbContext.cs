@@ -1,12 +1,14 @@
 using AI_Driven_PJ.Application.Common.Interfaces;
 using AI_Driven_PJ.Domain.Common;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace AI_Driven_PJ.Infrastructure.Persistence;
 
 public sealed partial class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-    : DbContext(options), IApplicationDbContext
+    : IdentityDbContext<IdentityUser, IdentityRole, string>(options), IApplicationDbContext
 {
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
