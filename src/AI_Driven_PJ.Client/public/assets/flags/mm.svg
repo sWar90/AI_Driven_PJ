@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40" role="img" aria-label="Myanmar">
+    <rect width="60" height="13.333" fill="#fecb00" />
+    <rect y="13.333" width="60" height="13.334" fill="#34b233" />
+    <rect y="26.667" width="60" height="13.333" fill="#ea2839" />
+    <path fill="#fff" d="m30 8 3.82 11.76h12.37l-10.01 7.27L40 38.8 30 31.52 20 38.8l3.82-11.77-10.01-7.27h12.37z" />
+</svg>
