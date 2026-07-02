@@ -1,0 +1,10 @@
+minimumReleaseAgeExclude:
+    - '@angular-devkit/architect@0.2003.31'
+    - '@angular-devkit/build-angular@20.3.31'
+    - '@angular-devkit/build-webpack@0.2003.31'
+    - '@angular-devkit/core@20.3.31'
+    - '@angular-devkit/schematics@20.3.31'
+    - '@angular/build@20.3.31'
+    - '@angular/cli@20.3.31'
+    - '@ngtools/webpack@20.3.31'
+    - '@schematics/angular@20.3.31'
