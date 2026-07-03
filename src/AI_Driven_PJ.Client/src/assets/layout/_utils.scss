@@ -1,0 +1,271 @@
+/* Utils */
+.clearfix:after {
+    content: ' ';
+    display: block;
+    clear: both;
+}
+
+.card {
+    background: var(--surface-card);
+    border: 1px solid var(--surface-border);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: var(--content-border-radius);
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.table-card {
+    background: var(--surface-card);
+    border-radius: var(--content-border-radius);
+    border: 1px solid var(--surface-border);
+    overflow: hidden;
+
+    .p-datatable {
+        border-radius: calc(var(--content-border-radius) - 1px);
+        overflow: hidden;
+    }
+
+    .p-datatable-wrapper,
+    .p-datatable-table-container {
+        border-radius: inherit;
+        overflow: hidden;
+    }
+
+    .p-datatable-header {
+        border-radius: calc(var(--content-border-radius) - 1px) calc(var(--content-border-radius) - 1px) 0 0;
+    }
+
+    .p-paginator {
+        border-radius: 0 0 calc(var(--content-border-radius) - 1px) calc(var(--content-border-radius) - 1px);
+    }
+}
+
+.app-dark {
+    --p-content-background: var(--layout-panel-background);
+    --p-content-border-color: var(--layout-panel-border);
+
+    .card,
+    .table-card,
+    .p-card,
+    .p-card-body,
+    .p-card-content,
+    .p-panel,
+    .p-panel-header,
+    .p-panel-content,
+    .p-datatable,
+    .p-datatable-wrapper,
+    .p-datatable-table-container,
+    .p-datatable-table,
+    .p-datatable-header,
+    .p-datatable-footer,
+    .p-datatable-thead > tr > th,
+    .p-datatable-tbody > tr,
+    .p-datatable-tbody > tr > td,
+    .p-datatable-tfoot > tr > td,
+    .p-paginator,
+    .p-datatable-paginator-bottom,
+    .p-datatable-paginator-top {
+        background: var(--layout-panel-background) !important;
+        color: var(--text-color);
+        border-color: var(--layout-panel-border);
+        backdrop-filter: blur(14px) saturate(135%);
+        -webkit-backdrop-filter: blur(14px) saturate(135%);
+    }
+
+    .card,
+    .p-card,
+    .p-panel,
+    .p-datatable {
+        box-shadow: var(--layout-glass-shadow);
+    }
+
+    .table-card {
+        background: var(--layout-panel-background);
+        border-color: var(--layout-panel-border);
+        box-shadow: var(--layout-glass-shadow);
+
+        .p-datatable,
+        .p-datatable-wrapper,
+        .p-datatable-table-container,
+        .p-datatable-table,
+        .p-datatable-thead > tr > th,
+        .p-datatable-tbody > tr,
+        .p-datatable-tbody > tr > td,
+        .p-datatable-header,
+        .p-datatable-footer,
+        .p-paginator {
+            background: var(--layout-panel-background) !important;
+            border-color: var(--layout-panel-border);
+        }
+
+        .p-datatable-thead > tr > th {
+            background: var(--layout-panel-soft-background) !important;
+        }
+
+        .p-datatable-tbody > tr:hover > td {
+            background: var(--layout-panel-soft-background) !important;
+        }
+    }
+
+    .p-datatable-thead > tr > th,
+    .p-datatable-tbody > tr > td,
+    .p-datatable-tfoot > tr > td {
+        border-color: rgba(148, 163, 184, 0.16);
+    }
+
+    .p-datatable-tbody > tr:hover > td {
+        background: var(--layout-panel-soft-background) !important;
+    }
+
+    .p-datatable-tbody > tr.p-highlight > td,
+    .p-datatable-tbody > tr.p-selectable-row.p-highlight > td,
+    .p-datatable-tbody > tr.p-datatable-row-selected > td,
+    .p-datatable-tbody > tr[aria-selected='true'] > td,
+    .p-datatable-tbody > tr[data-p-highlight='true'] > td {
+        background: color-mix(in srgb, var(--primary-color), transparent 68%) !important;
+        color: #ffffff;
+        border-color: color-mix(in srgb, var(--primary-color), transparent 42%);
+        box-shadow: inset 3px 0 0 var(--primary-color);
+    }
+
+    .p-datatable-tbody > tr.p-highlight:hover > td,
+    .p-datatable-tbody > tr.p-selectable-row.p-highlight:hover > td,
+    .p-datatable-tbody > tr.p-datatable-row-selected:hover > td,
+    .p-datatable-tbody > tr[aria-selected='true']:hover > td,
+    .p-datatable-tbody > tr[data-p-highlight='true']:hover > td {
+        background: color-mix(in srgb, var(--primary-color), transparent 58%) !important;
+    }
+
+    .p-inputtext,
+    .p-inputnumber-input,
+    .p-password-input,
+    .p-textarea,
+    .p-select,
+    .p-multiselect,
+    .p-inputgroupaddon,
+    .p-datepicker-input {
+        background: var(--p-form-field-background) !important;
+        color: var(--text-color);
+        border-color: var(--layout-panel-border);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+
+    .p-inputtext::placeholder,
+    .p-textarea::placeholder {
+        color: var(--text-color-secondary);
+    }
+
+    .p-inputtext:hover,
+    .p-inputnumber-input:hover,
+    .p-password-input:hover,
+    .p-textarea:hover,
+    .p-select:hover,
+    .p-multiselect:hover {
+        border-color: #4b5b72;
+    }
+
+    .p-inputtext:enabled:focus,
+    .p-inputnumber-input:enabled:focus,
+    .p-password-input:enabled:focus,
+    .p-textarea:enabled:focus,
+    .p-select.p-focus,
+    .p-multiselect.p-focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 1px color-mix(in srgb, var(--primary-color), transparent 55%);
+    }
+
+    .p-select-overlay,
+    .p-multiselect-overlay,
+    .p-popover,
+    .p-column-filter-overlay,
+    .p-datepicker-panel,
+    .p-tieredmenu {
+        background: var(--layout-panel-background) !important;
+        color: var(--text-color);
+        border-color: var(--layout-panel-border);
+        backdrop-filter: blur(14px) saturate(135%);
+        -webkit-backdrop-filter: blur(14px) saturate(135%);
+        box-shadow: var(--layout-glass-shadow);
+    }
+
+    .p-dialog-mask {
+        background: rgba(2, 6, 23, 0.56);
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+    }
+
+    .p-dialog {
+        background: var(--layout-panel-solid-background) !important;
+        color: var(--text-color);
+        border: 1px solid color-mix(in srgb, var(--primary-color), transparent 58%);
+        border-radius: var(--content-border-radius);
+        box-shadow:
+            0 24px 64px rgba(0, 0, 0, 0.58),
+            0 0 0 1px rgba(226, 232, 240, 0.08),
+            0 0 36px color-mix(in srgb, var(--primary-color), transparent 82%);
+        overflow: hidden;
+    }
+
+    .p-dialog-header,
+    .p-dialog-content,
+    .p-dialog-footer {
+        background: var(--layout-panel-solid-background) !important;
+        color: var(--text-color);
+        border-color: rgba(226, 232, 240, 0.12);
+    }
+
+    .p-dialog-header {
+        border-bottom: 1px solid rgba(226, 232, 240, 0.1);
+    }
+
+    .p-dialog-title {
+        color: #ffffff;
+        font-weight: 700;
+    }
+
+    .p-dialog-close-button,
+    .p-dialog-header-icon {
+        color: var(--text-color-secondary);
+    }
+
+    .p-dialog-close-button:hover,
+    .p-dialog-header-icon:hover {
+        background: var(--layout-menu-hover-background);
+        color: #ffffff;
+    }
+
+    .p-select-option,
+    .p-multiselect-option,
+    .p-tieredmenu-item-content {
+        color: var(--text-color);
+    }
+
+    .p-select-option:not(.p-select-option-selected):not(.p-disabled).p-focus,
+    .p-multiselect-option:not(.p-multiselect-option-selected):not(.p-disabled).p-focus,
+    .p-tieredmenu-item-content:hover {
+        background: var(--layout-menu-hover-background);
+        color: var(--text-color);
+    }
+
+    .p-button.p-button-outlined {
+        background: transparent;
+        border-color: color-mix(in srgb, var(--primary-color), transparent 35%);
+        color: #6aa3ff;
+    }
+
+    .p-progressbar {
+        background: #3b4252;
+    }
+}
+
+.p-toast {
+    &.p-toast-top-right,
+    &.p-toast-top-left,
+    &.p-toast-top-center {
+        top: 100px;
+    }
+}
