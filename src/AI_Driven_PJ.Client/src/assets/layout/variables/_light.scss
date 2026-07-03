@@ -1,0 +1,32 @@
+:root {
+    --brand-primary: var(--primary-color);
+    --brand-secondary: #222222;
+
+    --surface-ground: var(--p-surface-50);
+    --layout-app-background:
+        radial-gradient(circle at top left, color-mix(in srgb, var(--brand-primary) 4%, transparent), transparent 30rem),
+        linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    --layout-panel-background: rgba(255, 255, 255, 0.65);
+    --layout-panel-solid-background: #ffffff;
+    --layout-sidebar-background: var(--brand-secondary);
+    --layout-topbar-background: rgba(255, 255, 255, 0.9);
+    --layout-panel-soft-background: rgba(248, 250, 252, 0.58);
+    --layout-panel-border: #e2e8f0;
+    --layout-menu-text-color: #cbd5e1;
+    --layout-menu-muted-color: #94a3b8;
+    --layout-menu-hover-color: #ffffff;
+    --layout-menu-active-color: #f8fafc;
+    --layout-menu-hover-background: color-mix(in srgb, var(--brand-primary) 12%, transparent);
+    --layout-menu-hover-border: color-mix(in srgb, var(--brand-primary) 40%, transparent);
+    --layout-menu-active-background: color-mix(in srgb, var(--brand-primary) 16%, transparent);
+    --layout-menu-active-border: color-mix(in srgb, var(--brand-primary) 34%, transparent);
+    --code-background: var(--p-surface-900);
+    --code-color: var(--p-surface-200);
+}
+
+.layout-sidebar {
+    --text-color: var(--layout-menu-text-color);
+    --text-color-secondary: var(--layout-menu-muted-color);
+    --layout-panel-background: rgba(255, 255, 255, 0.06);
+    --layout-panel-border: rgba(255, 255, 255, 0.08);
+}
