@@ -1,0 +1,234 @@
+<div class="table-card">
+  <p-table
+    #dt1
+    [value]="banks"
+    [paginator]="true"
+    [rows]="take"
+    [first]="(page - 1) * take"
+    [totalRecords]="totalCount"
+    [lazy]="true"
+    [sortField]="sortField"
+    [sortOrder]="sortOrder"
+    [loading]="isLoading"
+    (onLazyLoad)="onLazyLoad($event)"
+    class="p-datatable-striped"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '80rem' }"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[10, 20, 30, 50, 100]"
+    selectionMode="single"
+    [selection]="selectedValue"
+    (selectionChange)="onSelectionChange($event)"
+    dataKey="bankId"
+    paginatorDropdownAppendTo="body"
+  >
+    <ng-template #caption>
+      <div class="grid grid-cols-12 gap-3">
+        <div class="md:col-span-6 sm:col-span-6 col-span-12 flex">
+          <p-splitbutton
+            label="{{ 'COMMON.CREATE' | translate }}"
+            icon="pi pi-plus"
+            [model]="items"
+            (onClick)="create()"
+          ></p-splitbutton>
+        </div>
+        <div class="md:col-span-6 sm:col-span-6 col-span-12 flex">
+          <p-iconfield iconPosition="left" class="ml-auto w-full md:w-auto">
+            <p-inputIcon>
+              <i class="pi pi-search"></i>
+            </p-inputIcon>
+            <input
+              #searchInput
+              pInputText
+              (keydown.enter)="search(searchInput.value)"
+              placeholder="{{ 'COMMON.SEARCH_KEYWORD' | translate }}"
+              [style]="{ width: '100%' }"
+            />
+          </p-iconfield>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #header>
+      <tr class="whitespace-nowrap">
+        <th pFrozenColumn [style]="{ width: '10px' }">#</th>
+        <th pSortableColumn="bankId">
+          {{ 'COMMON.ID' | translate }}
+          <p-sortIcon field="bankId"></p-sortIcon>
+        </th>
+        <th pSortableColumn="bankName">
+          {{ 'BANKS.BANK_NAME' | translate }}
+          <p-sortIcon field="bankName"></p-sortIcon>
+        </th>
+        <th pSortableColumn="bankCode">
+          {{ 'BANKS.BANK_CODE' | translate }}
+          <p-sortIcon field="bankCode"></p-sortIcon>
+        </th>
+        <th pSortableColumn="status">
+          {{ 'COMMON.STATUS' | translate }}
+          <p-sortIcon field="status"></p-sortIcon>
+        </th>
+        <th pSortableColumn="createdAt">
+          {{ 'COMMON.CREATED_AT' | translate }}
+          <p-sortIcon field="createdAt"></p-sortIcon>
+        </th>
+        <th pSortableColumn="createdBy">
+          {{ 'COMMON.CREATED_BY' | translate }}
+          <p-sortIcon field="createdBy"></p-sortIcon>
+        </th>
+        <th pSortableColumn="updatedAt">
+          {{ 'COMMON.UPDATED_AT' | translate }}
+          <p-sortIcon field="updatedAt"></p-sortIcon>
+        </th>
+        <th pSortableColumn="updatedBy">
+          {{ 'COMMON.UPDATED_BY' | translate }}
+          <p-sortIcon field="updatedBy"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-bank>
+      <tr class="whitespace-nowrap" [pSelectableRow]="bank">
+        <td>
+          <span class="pi pi-circle" [class.pi-check-circle]="selectedValue === bank"></span>
+        </td>
+        <td>{{ bank.bankId }}</td>
+        <td>{{ bank.bankName }}</td>
+        <td>{{ bank.bankCode }}</td>
+        <td>
+          <p-tag
+            [value]="'COMMON.' + bank.status | translate"
+            [severity]="getStatusSeverity(bank.status)"
+          ></p-tag>
+        </td>
+        <td>{{ bank.createdAt | localDateTime }}</td>
+        <td>{{ bank.createdBy }}</td>
+        <td>{{ bank.updatedAt | localDateTime }}</td>
+        <td>{{ bank.updatedBy ?? '-' }}</td>
+      </tr>
+    </ng-template>
+
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="9">{{ 'BANKS.NO_BANKS_FOUND' | translate }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog
+  header="{{ (isEdit ? 'BANKS.EDIT_BANK' : 'BANKS.CREATE_BANK') | translate }}"
+  [(visible)]="isModalVisible"
+  maskStyleClass="backdrop-blur-sm"
+  [breakpoints]="{
+    '1920px': '40vw',
+    '1440px': '30vw',
+    '1024px': '60vw',
+    '768px': '80vw',
+    '425px': '100vw',
+    '375px': '100vw',
+    '320px': '100vw',
+  }"
+  [modal]="true"
+  [style]="{ 'min-width': '40vw' }"
+  [draggable]="false"
+  [resizable]="false"
+  (onHide)="onDialogHide()"
+>
+  <form [formGroup]="bankForm" (submit)="submit()">
+    <div class="flex flex-col gap-4">
+      <div>
+        <div class="flex flex-col gap-2">
+          <label>{{ 'BANKS.BANK_NAME' | translate }}</label>
+          <input
+            formControlName="bankName"
+            pInputText
+            placeholder="{{ 'BANKS.ENTER_BANK_NAME' | translate }}"
+            required
+          />
+          @if (bankForm.get('bankName')?.hasError('required') && bankForm.get('bankName')?.dirty) {
+            <p-message severity="error" size="small" variant="simple">{{
+              'BANKS.BANK_NAME_REQUIRED' | translate
+            }}</p-message>
+          }
+          @if (bankForm.get('bankName')?.hasError('maxlength') && bankForm.get('bankName')?.dirty) {
+            <p-message severity="error" size="small" variant="simple">{{
+              'BANKS.BANK_NAME_MAX_LENGTH' | translate
+            }}</p-message>
+          }
+        </div>
+      </div>
+
+      <div>
+        <div class="flex flex-col gap-2">
+          <label>{{ 'BANKS.BANK_CODE' | translate }}</label>
+          <input
+            formControlName="bankCode"
+            pInputText
+            placeholder="{{ 'BANKS.ENTER_BANK_CODE' | translate }}"
+            required
+          />
+          @if (bankForm.get('bankCode')?.hasError('required') && bankForm.get('bankCode')?.dirty) {
+            <p-message severity="error" size="small" variant="simple">{{
+              'BANKS.BANK_CODE_REQUIRED' | translate
+            }}</p-message>
+          }
+          @if (bankForm.get('bankCode')?.hasError('maxlength') && bankForm.get('bankCode')?.dirty) {
+            <p-message severity="error" size="small" variant="simple">{{
+              'BANKS.BANK_CODE_MAX_LENGTH' | translate
+            }}</p-message>
+          }
+        </div>
+      </div>
+
+      <div>
+        <div class="flex flex-col gap-2">
+          <label>{{ 'COMMON.STATUS' | translate }}</label>
+          <div class="flex items-center gap-2 min-h-10">
+            <p-toggleswitch
+              [ngModel]="bankForm.get('status')?.value === 'ACTIVE'"
+              (ngModelChange)="bankForm.get('status')?.setValue($event ? 'ACTIVE' : 'INACTIVE')"
+              [ngModelOptions]="{ standalone: true }"
+              inputId="bankStatus"
+            ></p-toggleswitch>
+            <label for="bankStatus">{{
+              (bankForm.get('status')?.value === 'ACTIVE' ? 'COMMON.ACTIVE' : 'COMMON.INACTIVE') | translate
+            }}</label>
+          </div>
+          @if (bankForm.get('status')?.hasError('required') && bankForm.get('status')?.dirty) {
+            <p-message severity="error" size="small" variant="simple">{{
+              'BANKS.STATUS_REQUIRED' | translate
+            }}</p-message>
+          }
+        </div>
+      </div>
+
+      <div>
+        <div class="flex flex-col mb-2 gap-2">
+          <p-button
+            icon="pi pi-check"
+            label="{{ (isEdit ? 'COMMON.UPDATE' : 'COMMON.SAVE') | translate }}"
+            type="submit"
+            [loading]="isSubmitting"
+          ></p-button>
+        </div>
+      </div>
+    </div>
+  </form>
+</p-dialog>
+
+<p-confirmDialog
+  [breakpoints]="{
+    '1920px': '30vw',
+    '1440px': '60vw',
+    '1024px': '100vw',
+    '768px': '100vw',
+    '425px': '150vw',
+    '375px': '100vw',
+    '320px': '100vw',
+  }"
+  [style]="{ width: '30vw' }"
+  key="bankDeleteDialog"
+  position="bottom"
+  rejectButtonStyleClass="p-button-outlined"
+></p-confirmDialog>
