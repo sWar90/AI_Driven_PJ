@@ -18,6 +18,7 @@
         "DELETE": "ဖျက်မည်",
         "CANCEL": "မလုပ်တော့ပါ",
         "SAVE": "သိမ်းမည်",
+        "EXCEL": "Excel",
         "SUCCESS": "အောင်မြင်သည်",
         "ERROR": "အမှား",
         "WARNING": "သတိပေးချက်",
@@ -147,5 +148,66 @@
             "FORGOT_PASSWORD": "စကားဝှက်မေ့နေပါသလား?",
             "SIGN_IN": "ဝင်ရောက်မည်"
         }
+    },
+    "MENU": {
+        "HOME": {
+            "LABEL": "ပင်မ",
+            "DASHBOARD": "ဒက်ရှ်ဘုတ်",
+            "COMPANIES": "ကုမ္ပဏီများ",
+            "BANKS": "ဘဏ်များ"
+        },
+        "ORGANIZATION": "ORGANIZATION",
+        "FINANCE_SETUP": "FINANCE SETUP",
+        "BANKING": "BANKING",
+        "REPORT": {
+            "LABEL": "REPORT",
+            "FINANCIAL": "Financial"
+        },
+        "JOURNAL": "JOURNAL",
+        "ADMINISTRATION": {
+            "LABEL": "ADMINISTRATION",
+            "SECURITY": "Security"
+        },
+        "SETUP": {
+            "COMPANY": "Company",
+            "PARTIES": "Parties",
+            "ACCOUNTS": "Accounts",
+            "VOUCHERS": "Vouchers",
+            "ASSETS": "Assets",
+            "BANKING": "Banking"
+        },
+        "MANAGEMENT": {
+            "COMPANIES": "Companies",
+            "DEPARTMENTS": "Departments",
+            "VENDORS": "Vendors",
+            "CUSTOMERS": "Customers",
+            "CURRENCIES": "Currencies",
+            "ACCOUNT_TYPES": "Account Types",
+            "ACCOUNT_CATEGORIES": "Account Categories",
+            "ACCOUNT_SUB_CATEGORIES": "Account Sub Categories",
+            "CHART_OF_ACCOUNTS": "Chart Of Accounts",
+            "COMPANY_VOUCHER_SETTINGS": "Company Voucher Settings",
+            "ASSET_TYPES": "Asset Types",
+            "FIXED_ASSETS": "Fixed Assets",
+            "BANKS": "Banks",
+            "BANK_ACCOUNTS": "Bank Accounts",
+            "USER_MANAGE": "User Manage"
+        }
+    },
+    "REPORTS": {
+        "ACCOUNT_BALANCE": {
+            "TITLE": "Account Balance"
+        },
+        "JOURNAL_LINE_DETAIL": {
+            "TITLE": "Journal Line Detail"
+        }
+    },
+    "JOURNAL_VOUCHERS": {
+        "TITLE": "Journal Vouchers",
+        "ALL_TITLE": "All Vouchers",
+        "DRAFT_TITLE": "Draft Vouchers",
+        "PENDING_TITLE": "Pending Vouchers",
+        "APPROVED_TITLE": "Approved Vouchers",
+        "REJECTED_TITLE": "Rejected Vouchers"
     }
 }
