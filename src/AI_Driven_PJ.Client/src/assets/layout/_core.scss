@@ -1,0 +1,45 @@
+html {
+  height: 100%;
+  font-size: 13px;
+}
+
+body {
+  font-family: 'Roboto', 'Noto Sans Myanmar', Arial, sans-serif;
+  color: var(--text-color);
+  background: var(--layout-app-background);
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.2;
+}
+
+html[lang='mm'] body {
+  font-family: 'Noto Sans Myanmar', 'Roboto', Arial, sans-serif;
+  line-height: 1.45;
+}
+
+html[lang='mm'] input,
+html[lang='mm'] button,
+html[lang='mm'] textarea,
+html[lang='mm'] select,
+html[lang='mm'] .p-component {
+  font-family: 'Noto Sans Myanmar', 'Roboto', Arial, sans-serif;
+}
+
+.app-dark {
+  body {
+    background: var(--layout-app-background);
+    background-attachment: fixed;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+.layout-wrapper {
+  min-height: 100vh;
+}
