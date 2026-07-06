@@ -10,6 +10,15 @@ public class ExceptionHandlingMiddleware(RequestDelegate next, ILogger<Exception
         {
             await next(context);
         }
+        catch (OperationCanceledException) when (context.RequestAborted.IsCancellationRequested)
+        {
+            logger.LogInformation("HTTP request was canceled by the client.");
+
+            if (!context.Response.HasStarted)
+            {
+                context.Response.StatusCode = 499;
+            }
+        }
         catch (Exception exception)
         {
             logger.LogError(exception, "Unhandled API exception.");

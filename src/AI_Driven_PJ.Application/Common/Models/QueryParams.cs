@@ -12,6 +12,12 @@ public sealed class QueryParams
         set => _pageNumber = value < 1 ? 1 : value;
     }
 
+    public int Page
+    {
+        get => PageNumber;
+        set => PageNumber = value;
+    }
+
     public int PageSize
     {
         get => _pageSize;
@@ -23,9 +29,33 @@ public sealed class QueryParams
         };
     }
 
+    public int Take
+    {
+        get => PageSize;
+        set => PageSize = value;
+    }
+
     public string? SearchTerm { get; set; }
+
+    public string? Search
+    {
+        get => SearchTerm;
+        set => SearchTerm = value;
+    }
 
     public string? SortBy { get; set; }
 
+    public string? SortField
+    {
+        get => SortBy;
+        set => SortBy = value;
+    }
+
     public bool SortDescending { get; set; }
+
+    public int? SortOrder
+    {
+        get => SortDescending ? -1 : 1;
+        set => SortDescending = value < 0;
+    }
 }

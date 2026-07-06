@@ -42,7 +42,12 @@ public static class DependencyInjection
         services.AddDbContext<ApplicationDbContext>((serviceProvider, options) =>
         {
             var connectionString = configuration.GetConnectionString("DefaultConnection");
-            options.UseSqlServer(connectionString);
+            options.UseSqlServer(
+                connectionString,
+                sqlOptions => sqlOptions.EnableRetryOnFailure(
+                    maxRetryCount: 3,
+                    maxRetryDelay: TimeSpan.FromSeconds(5),
+                    errorNumbersToAdd: null));
             options.AddInterceptors(serviceProvider.GetServices<ISaveChangesInterceptor>());
         });
 

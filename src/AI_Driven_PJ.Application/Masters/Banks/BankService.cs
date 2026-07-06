@@ -58,16 +58,22 @@ public sealed class BankService(IApplicationDbContext context)
 
     public async Task<Result<BankDto>> CreateAsync(BankRequest request, CancellationToken cancellationToken)
     {
-        if (await context.Set<Bank>().AnyAsync(bank => bank.BankId == request.BankId, cancellationToken))
+        var bankCode = request.BankCode.Trim();
+        if (await context.Set<Bank>().AnyAsync(bank => bank.BankCode == bankCode, cancellationToken))
         {
             return Result<BankDto>.Failure("Bank already exists.");
         }
 
+        var maxBankId = await context.Set<Bank>()
+            .Select(bank => (int?)bank.BankId)
+            .MaxAsync(cancellationToken);
+        var nextBankId = (maxBankId ?? 0) + 1;
+
         var bank = new Bank
         {
-            BankId = request.BankId,
-            BankName = request.BankName,
-            BankCode = request.BankCode,
+            BankId = nextBankId,
+            BankName = request.BankName.Trim(),
+            BankCode = bankCode,
             Status = request.Status,
             CreatedAt = DateTime.UtcNow,
             CreatedBy = "system"
@@ -92,8 +98,16 @@ public sealed class BankService(IApplicationDbContext context)
             return Result<BankDto>.Failure("Bank not found.");
         }
 
-        bank.BankName = request.BankName;
-        bank.BankCode = request.BankCode;
+        var bankCode = request.BankCode.Trim();
+        if (await context.Set<Bank>().AnyAsync(
+                otherBank => otherBank.BankId != id && otherBank.BankCode == bankCode,
+                cancellationToken))
+        {
+            return Result<BankDto>.Failure("Bank already exists.");
+        }
+
+        bank.BankName = request.BankName.Trim();
+        bank.BankCode = bankCode;
         bank.Status = request.Status;
         bank.UpdatedAt = DateTime.UtcNow;
         bank.UpdatedBy = "system";

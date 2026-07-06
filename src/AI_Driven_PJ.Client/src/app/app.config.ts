@@ -10,6 +10,7 @@ import {
   withEnabledBlockingInitialNavigation,
   withInMemoryScrolling,
 } from '@angular/router';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MessageService } from 'primeng/api';
@@ -41,6 +42,7 @@ export const appConfig: ApplicationConfig = {
       ]),
     ),
     provideZonelessChangeDetection(),
+    provideAnimationsAsync(),
     provideTranslateService({
       loader: provideTranslateHttpLoader({
         prefix: 'assets/i18n/',
