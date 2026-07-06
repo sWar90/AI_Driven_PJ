@@ -65,6 +65,7 @@ export class BankPage implements OnInit {
   private translateService = inject(TranslateService);
   private destroyRef = inject(DestroyRef);
   private exportService = inject(ExportService);
+
   bankForm = this.formBuilder.group({
     bankName: ['', { validators: [Validators.required, Validators.maxLength(150)] }],
     bankCode: ['', { validators: [Validators.required, Validators.maxLength(10)] }],

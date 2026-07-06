@@ -26,3 +26,5 @@ Thumbs.db
 .env.*
 appsettings.Local.json
 appsettings.*.Local.json
+App_Data/DataProtectionKeys/
+src/**/App_Data/DataProtectionKeys/

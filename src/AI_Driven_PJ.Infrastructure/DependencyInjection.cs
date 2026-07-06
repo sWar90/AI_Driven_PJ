@@ -58,15 +58,8 @@ public static class DependencyInjection
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>();
 
-        services.AddDbContext<AI_Driven_PJDbContext>((serviceProvider, options) =>
-        {
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
-            options.UseSqlServer(connectionString);
-            options.AddInterceptors(serviceProvider.GetServices<ISaveChangesInterceptor>());
-        });
-
         services.AddScoped<IApplicationDbContext>(provider =>
-            provider.GetRequiredService<AI_Driven_PJDbContext>());
+            provider.GetRequiredService<ApplicationDbContext>());
 
         return services;
     }

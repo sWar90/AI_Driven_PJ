@@ -1,5 +1,6 @@
 using AI_Driven_PJ.Application.Common.Interfaces;
 using AI_Driven_PJ.Domain.Common;
+using AI_Driven_PJ.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,10 @@ namespace AI_Driven_PJ.Infrastructure.Persistence;
 public sealed partial class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
     : IdentityDbContext<IdentityUser, IdentityRole, string>(options), IApplicationDbContext
 {
+    public DbSet<Bank> Banks => Set<Bank>();
+
+    public DbSet<Company> Companies => Set<Company>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
